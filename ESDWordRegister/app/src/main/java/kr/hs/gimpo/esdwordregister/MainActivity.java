@@ -143,11 +143,80 @@ public class MainActivity extends AppCompatActivity {
                         directory = "분류: " + category1.getSelectedItem().toString() + " - " + manualcategory2.getText().toString() + " - " + word.getText();
                         db.child(category1.getSelectedItem().toString()).child(manualcategory2.getText().toString()).child(word.getText().toString()).child("의미").setValue(meaning.getText().toString());
                         db.child(category1.getSelectedItem().toString()).child(manualcategory2.getText().toString()).child(word.getText().toString()).child("어원").setValue(from.getText().toString());
+                        db.child("소분류").child(category1.getSelectedItem().toString()).addListenerForSingleValueEvent(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(DataSnapshot dataSnapshot) {
+                                if(dataSnapshot != null) {
+                                    String[] category2List = dataSnapshot.getValue(String.class).split(",");
+                                    boolean isIncluded = false;
+                                    for(String e : category2List) {
+                                        if(e.compareTo(manualcategory2.getText().toString())==0)
+                                            isIncluded = true;
+                                    }
+                                    if(!isIncluded) {
+                                        db.setValue(dataSnapshot.getValue(String.class) + "," + manualcategory2.getText().toString());
+                                    } else {
+                                        Toast.makeText(getApplicationContext(), "이미 존재하는 분류입니다!", Toast.LENGTH_SHORT).show();
+                                    }
+                                }
+                            }
+    
+                            @Override
+                            public void onCancelled(DatabaseError databaseError) {
+        
+                            }
+                        });
                     }
                 } else {
                     directory = "분류: " + manualcategory1.getText().toString() + " - " + manualcategory2.getText().toString() + " - " + word.getText();
                     db.child(manualcategory1.getText().toString()).child(manualcategory2.getText().toString()).child(word.getText().toString()).child("의미").setValue(meaning.getText().toString());
                     db.child(manualcategory1.getText().toString()).child(manualcategory2.getText().toString()).child(word.getText().toString()).child("어원").setValue(from.getText().toString());
+                    db.child("대분류").addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(DataSnapshot dataSnapshot) {
+                            if(dataSnapshot != null) {
+                                String[] category1List = dataSnapshot.getValue(String.class).split(",");
+                                boolean isIncluded = false;
+                                for(String e : category1List) {
+                                    if(e.compareTo(manualcategory1.getText().toString())==0)
+                                        isIncluded = true;
+                                }
+                                if(!isIncluded) {
+                                    db.setValue(dataSnapshot.getValue(String.class) + "," + manualcategory1.getText().toString());
+                                } else {
+                                    Toast.makeText(getApplicationContext(), "이미 존재하는 분류입니다!", Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        }
+        
+                        @Override
+                        public void onCancelled(DatabaseError databaseError) {
+            
+                        }
+                    });
+                    db.child("소분류").child(manualcategory1.getText().toString()).addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(DataSnapshot dataSnapshot) {
+                            if(dataSnapshot != null) {
+                                String[] category2List = dataSnapshot.getValue(String.class).split(",");
+                                boolean isIncluded = false;
+                                for(String e : category2List) {
+                                    if(e.compareTo(manualcategory2.getText().toString())==0)
+                                        isIncluded = true;
+                                }
+                                if(!isIncluded) {
+                                    db.setValue(dataSnapshot.getValue(String.class) + "," + manualcategory2.getText().toString());
+                                } else {
+                                    Toast.makeText(getApplicationContext(), "이미 존재하는 분류입니다!", Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        }
+        
+                        @Override
+                        public void onCancelled(DatabaseError databaseError) {
+            
+                        }
+                    });
                 }
                 dir.setText(directory);
                 word_m.setText(meaning.getText().toString());
