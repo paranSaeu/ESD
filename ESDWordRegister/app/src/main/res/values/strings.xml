@@ -1,3 +1,15 @@
 <resources>
-    <string name="app_name">ESDWordRegister</string>
+    <string name="app_name">ESD 단어 등록</string>
+
+    <string name="word_dir">분류
+    </string>
+    <string name="word_mean">의미</string>
+    <string name="word_from">어원</string>
+    <string name="word">단어</string>
+
+    <string name="category1">대분류</string>
+    <string name="category2">소분류</string>
+
+    <string name="find">조회</string>
+    <string name="register">등록</string>
 </resources>
