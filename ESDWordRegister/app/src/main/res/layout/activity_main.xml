@@ -74,7 +74,7 @@
         android:layout_marginTop="8dp"
         android:ems="10"
         android:hint="@string/word_mean"
-        android:inputType="textPersonName"
+        android:inputType="textMultiLine"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/word" />
 
@@ -86,7 +86,7 @@
         android:layout_marginTop="8dp"
         android:ems="10"
         android:hint="@string/word_from"
-        android:inputType="textPersonName"
+        android:inputType="textMultiLine"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/meaning" />
 

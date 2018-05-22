@@ -12,4 +12,9 @@
 
     <string name="find">조회</string>
     <string name="register">등록</string>
+
+    <string-array name="category1">
+        <item>asdf</item>
+        <item>ghjk</item>
+    </string-array>
 </resources>
