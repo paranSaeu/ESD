@@ -154,7 +154,7 @@ public class MainActivity extends AppCompatActivity {
                                             isIncluded = true;
                                     }
                                     if(!isIncluded) {
-                                        db.setValue(dataSnapshot.getValue(String.class) + "," + manualcategory2.getText().toString());
+                                        db.child("소분류").child(category1.getSelectedItem().toString()).setValue(dataSnapshot.getValue(String.class) + "," + manualcategory2.getText().toString());
                                     } else {
                                         Toast.makeText(getApplicationContext(), "이미 존재하는 분류입니다!", Toast.LENGTH_SHORT).show();
                                     }
@@ -182,7 +182,7 @@ public class MainActivity extends AppCompatActivity {
                                         isIncluded = true;
                                 }
                                 if(!isIncluded) {
-                                    db.setValue(dataSnapshot.getValue(String.class) + "," + manualcategory1.getText().toString());
+                                    db.child("대분류").setValue(dataSnapshot.getValue(String.class) + "," + manualcategory1.getText().toString());
                                 } else {
                                     Toast.makeText(getApplicationContext(), "이미 존재하는 분류입니다!", Toast.LENGTH_SHORT).show();
                                 }
@@ -205,7 +205,7 @@ public class MainActivity extends AppCompatActivity {
                                         isIncluded = true;
                                 }
                                 if(!isIncluded) {
-                                    db.setValue(dataSnapshot.getValue(String.class) + "," + manualcategory2.getText().toString());
+                                    db.child("소분류").child(manualcategory1.getText().toString()).setValue(dataSnapshot.getValue(String.class) + "," + manualcategory2.getText().toString());
                                 } else {
                                     Toast.makeText(getApplicationContext(), "이미 존재하는 분류입니다!", Toast.LENGTH_SHORT).show();
                                 }
