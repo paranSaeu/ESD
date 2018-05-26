@@ -8,10 +8,10 @@
 
 이 프로젝트는 크게 다음으로 구성되어 있습니다.
 
-- ESDWordRegister/
+- ESDWordRegister/ <br>
 ESD 프로젝트에 사용될 혐오단어 데이터베이스를 구축하기 위한 어플리케이션 프로젝트 파일입니다.<br>
 Gradle 프로젝트이므로 Android Studio에서 확인하실 수 있습니다.
 
-- ESD-wordDB-template.json
+- ESD-wordDB-template.json <br>
 혐오단어 데이터베이스의 기초 데이터들입니다.
 
