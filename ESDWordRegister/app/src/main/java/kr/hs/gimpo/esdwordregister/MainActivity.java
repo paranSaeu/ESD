@@ -197,7 +197,7 @@ public class MainActivity extends AppCompatActivity {
                     db.child("소분류").child(manualcategory1.getText().toString()).addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
                         public void onDataChange(DataSnapshot dataSnapshot) {
-                            if(dataSnapshot != null) {
+                            if(dataSnapshot.getValue() != null) {
                                 String[] category2List = dataSnapshot.getValue(String.class).split(",");
                                 boolean isIncluded = false;
                                 for(String e : category2List) {
