@@ -1,4 +1,4 @@
-package kr.hs.gimpo.esdhatespeechdictonary;
+package kr.hs.gimpo.esdhatespeechdictionary;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
