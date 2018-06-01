@@ -1,4 +1,4 @@
-
+﻿
 # 2018 ESD 프로젝트: 혐오 및 차별 단어 필터링
 
 ## 개요
@@ -16,6 +16,6 @@ Gradle 프로젝트이므로 Android Studio에서 확인하실 수 있습니다.
 - ESD-wordDB-template.json <br>
 혐오단어 데이터베이스의 기초 데이터들입니다.
 
-- ESDHateSpeechDictonary <br>
+- ESDHateSpeechDictionary <br>
 혐오단어를 사전 형식으로 확인할 수 있는 어플리케이션 프로젝트 파일입니다.<br>
 Gradle 프로젝트이므로 Android Studio에서 확인하실 수 있습니다.
