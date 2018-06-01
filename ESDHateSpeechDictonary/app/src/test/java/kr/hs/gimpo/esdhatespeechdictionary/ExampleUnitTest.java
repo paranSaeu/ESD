@@ -1,4 +1,4 @@
-package kr.hs.gimpo.esdhatespeechdictonary;
+package kr.hs.gimpo.esdhatespeechdictionary;
 
 import org.junit.Test;
 

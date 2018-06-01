@@ -1,4 +1,4 @@
-package kr.hs.gimpo.esdhatespeechdictonary;
+package kr.hs.gimpo.esdhatespeechdictionary;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
 
-        assertEquals("kr.hs.gimpo.esdhatespeechdictonary", appContext.getPackageName());
+        assertEquals("kr.hs.gimpo.esdhatespeechdictionary", appContext.getPackageName());
     }
 }
