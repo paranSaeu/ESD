@@ -20,12 +20,9 @@ public class MainActivity extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                public void onClick(View v) {
-                    TextView textView2 = (TextView) findViewById(R.id.error_text);
-                    textView2.setText("please...");
-
-                }
+                TextView textView2 = (TextView) findViewById(R.id.error_text);
+                textView2.setText("please...");
+            }
         });
     }
 
