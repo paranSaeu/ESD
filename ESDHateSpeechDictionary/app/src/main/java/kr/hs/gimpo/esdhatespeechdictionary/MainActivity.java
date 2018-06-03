@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
 
@@ -21,8 +22,14 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 TextView textView2 = (TextView) findViewById(R.id.error_text);
-                textView2.setText("please...");
+                textView2.setText(R.string.hyunsoo);
+                EditText editText = (EditText) findViewById(R.id.writtingboard1);
+                String data = editText.getText().toString();
+                EditText editText = findViewById(R.id.writtingboard1);
+                String data = editText.getText().toString();
+                textView2.setText(data);
             }
+
         });
     }
 
