@@ -1,6 +1,7 @@
 package kr.hs.gimpo.esdhatespeechdictionary;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -25,9 +26,9 @@ public class MainActivity extends AppCompatActivity {
                 textView2.setText(R.string.hyunsoo);
                 EditText editText = (EditText) findViewById(R.id.writtingboard1);
                 String data = editText.getText().toString();
-                EditText editText = findViewById(R.id.writtingboard1);
-                String data = editText.getText().toString();
                 textView2.setText(data);
+                Intent intent = new Intent(getApplicationContext(), Introactivity.class);
+                startActivity(intent);
             }
 
         });
