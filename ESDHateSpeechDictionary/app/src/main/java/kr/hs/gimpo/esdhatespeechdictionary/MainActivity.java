@@ -18,19 +18,6 @@ public class MainActivity extends AppCompatActivity implements kr.hs.gimpo.esdha
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        
-        Button search = (Button) findViewById(R.id.search);
-        
-        search.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                EditText editText = (EditText) findViewById(R.id.editText);
-                TextView word = (TextView) findViewById(R.id.word_hint);
-                
-                word.setText(editText.getText());
-                editText.setText("");
-            }
-        });
     }
     
     @Override
