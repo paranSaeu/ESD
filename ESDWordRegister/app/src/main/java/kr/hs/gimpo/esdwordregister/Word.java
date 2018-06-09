@@ -30,4 +30,9 @@ public class Word {
     public String get_Category() {
         return this._Category;
     }
+    
+    @Override
+    public String toString() {
+        return this.get_Word();
+    }
 }
