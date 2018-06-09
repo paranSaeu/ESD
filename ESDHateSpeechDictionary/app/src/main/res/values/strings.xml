@@ -1,6 +1,16 @@
 <resources>
     <string name="app_name">ESDHateSpeechDictonary</string>
-    <string name="jebal">Errorfuck</string>
-    <string name="chaos">혼돈! 파괴! 망가!</string>
-    </resources>
+
+    <string name="search_button">검색</string>
+    <string name="search_bar_hint">검색할 단어를 입력해 주세요</string>
+
+    <string name="word_hint">단어</string>
+    <string name="meaning_hint">의미</string>
+    <string name="etymology_hint">어원</string>
+    <string name="category_hint">분류(카테고리)</string>
+
+    <string name="quit_prompt">어플리케이션을 종료하시겠습니까?</string>
+    <string name="quit">종료</string>
+    <string name="cancel">취소</string>
+</resources>
 
