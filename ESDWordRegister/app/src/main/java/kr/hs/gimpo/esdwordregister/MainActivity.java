@@ -90,8 +90,6 @@ public class MainActivity extends AppCompatActivity {
                     word.setText(word_text.getText());
                     word_text.setText("");
                     category.setText(category_text.getText() + "/" + category2_text.getText());
-                    category_text.setText("");
-                    category2_text.setText("");
                     meaning.setText(meaning_text.getText());
                     meaning_text.setText("");
                     etymology.setText(etymology_text.getText());
