@@ -52,22 +52,29 @@ public class MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         // activity_main.xml 파일의 모든 View들을 bind합니다.
         mainBinding = DataBindingUtil.setContentView(this, R.layout.activity_main);
-    
+        
+        // Firebase 데이터베이스에서 데이터를 받아옵니다.
         DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference("ESD");
-    
+        
+        // ChildEventListener를 설정합니다. word 하위에 있는 모든 데이터가 영향을 받습니다.
         mDatabase.child("word").addChildEventListener(new ChildEventListener() {
-        
+            
+            // 단어를 맨 처음 배열할 순서에 대한 인덱스입니다. 데이터가 추가되면 맨 밑에 표시됩니다.
             int idx = 0;
-        
+            
+            // 데이터를 맨 처음 불러올 때 혹은 데이터가 추가되었을 때 작동합니다.
             @Override
             public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-                Log.d("onChildAdded", "s: "+ s + "d: " + dataSnapshot.toString());
+                // 데이터를 받아오는 순서대로 오프라인 리스트에 저장합니다.
                 wordList.put(idx, dataSnapshot.getValue(Word.class));
                 idx++;
                 
+                // 맨 처음 데이터를 받아왔다면
                 if(!isInit) {
+                    // RecyclerView에 변경된 데이터 리스트를 적용하고
                     adapter.notifyDataSetChanged();
                     
+                    // 맨 처음 받아온 데이터를 오른쪽 정의 화면에 띄워 줍니다.
                     Word wordData = wordList.get(0);
     
                     mainBinding.word.setText(wordData.get_Word());
@@ -76,19 +83,25 @@ public class MainActivity extends AppCompatActivity
                     mainBinding.wordMeaning.setText(wordData.get_Meaning());
                     isInit = true;
                 }
+                // RecyclerView에 변경된 데이터 리스트를 적용합니다.
                 adapter.notifyDataSetChanged();
             }
-        
+            
+            // 단어 데이터가 중간에 변했을 때 작동합니다.
             @Override
             public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-                Log.d("onChildChanged", "s: "+ s + "d: " + dataSnapshot.toString());
+                // 변한 데이터를 데이터 리스트에 적용하기 위해 임시 리스트를 만듭니다.
                 ArrayList<String> list = new ArrayList<>();
                 
+                // 임시 데이터 리스트에 데이터를 넣어줍니다.
                 for(int i = 0; i < wordList.size(); i++) {
                     list.add(wordList.get(i).get_Word());
                 }
                 
+                // 변한 데이터의 위치를 찾아 오프라인 리스트의 데이터를 바꾸어 줍니다.
                 wordList.put(list.indexOf(s) + 1, dataSnapshot.getValue(Word.class));
+                
+                // RecyclerView에 변경된 데이터 리스트를 적용합니다.
                 adapter.notifyDataSetChanged();
             }
         
@@ -99,7 +112,7 @@ public class MainActivity extends AppCompatActivity
         
             @Override
             public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-                Log.d("onChildMoved", "s: "+ s + "d: " + dataSnapshot.toString());
+            
             }
         
             @Override
@@ -195,16 +208,6 @@ public class MainActivity extends AppCompatActivity
         
         // Firebase DB와 연결합니다.
         final DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference("ESD").child("word");
-    
-        // Firebase DB에서 단어 목록을 받아와 가나다순으로 배열합니다.
-        Query query = mDatabase.orderByChild("_Word");
-        
-        // Firebase에서 데이터를 받아와 RecyclerAdapter를 만듭니다.
-        // Word.class : 단어 목록의 각 항목에 해당하는 객체
-        FirebaseRecyclerOptions<Word> options = new FirebaseRecyclerOptions
-                .Builder<Word>()
-                .setQuery(query, Word.class)
-                .build();
         
         adapter = new RecyclerAdapter(wordList);
         
@@ -232,25 +235,31 @@ public class MainActivity extends AppCompatActivity
         mainBinding.wordListView.addItemDecoration(dividerItemDecoration);
     }
     
+    // RecyclerView에 데이터를 넣고 표시해 주는 객체입니다.
     class RecyclerAdapter extends RecyclerView.Adapter<ViewHolder> {
         
+        // RecyclerView에 표시되는 단어 리스트입니다.
         Map<Integer, Word> data;
         
+        // Firebase에서 받은 데이터를 RecyclerView에 표시할 수 있도록 데이터를 입력해 줍니다.
         public RecyclerAdapter(Map<Integer, Word> data) {
             this.data = data;
         }
         
+        // RecyclerView가 시작되기 직전 각 항목에 데이터를 표시해 줍니다.
         @Override
         public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
             holder.wordTitle.setText(data.get(position).get_Word());
             holder.wordCategory.setText(data.get(position).get_Category());
         }
-    
+        
+        // RecyclerView에 표시된 데이터 수를 알려줍니다.
         @Override
         public int getItemCount() {
             return data.size();
         }
-    
+        
+        // RecyclerView가 시작되기 전 각 항목에 표시될 레이아웃을 표시해 줍니다.
         @NonNull
         @Override
         public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -258,6 +267,7 @@ public class MainActivity extends AppCompatActivity
         }
     }
     
+    // 총 포함 수(isContain)에 대해 내림차순으로 정렬해 주는 객체입니다.
     static class CompareSeqDesc implements Comparator<Word> {
         @Override
         public int compare(Word o1, Word o2) {
