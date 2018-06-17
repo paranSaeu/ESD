@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
+import com.google.firebase.database.FirebaseDatabase;
+
 public class IntroActivity extends AppCompatActivity {
     
     @Override
@@ -11,9 +13,10 @@ public class IntroActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_intro);
         
-        // 인트로 화면에서 해야 할 것은?
+        // Firebase DB를 오프라인에서도 사용할 수 있도록 설정
+        FirebaseDatabase.getInstance().setPersistenceEnabled(true);
         
-        // 초기화 완료 후...
+        // 초기화가 완료되면 MainActivity로 건너뜀
         startActivity(new Intent(getApplicationContext(), MainActivity.class));
         finish();
     }

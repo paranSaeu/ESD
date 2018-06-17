@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">ESDHateSpeechDictonary</string>
+    <string name="app_name">ESDHateSpeechDictionary</string>
 
     <string name="search_button">검색</string>
     <string name="search_bar_hint">검색할 단어를 입력해 주세요</string>
