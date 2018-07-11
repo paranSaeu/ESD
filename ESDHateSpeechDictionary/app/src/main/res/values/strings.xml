@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">ESDHateSpeechDictionary</string>
+    <string name="app_name">말하기 전에 생각했나요?</string>
 
     <string name="search_button">검색</string>
     <string name="search_bar_hint">검색할 단어를 입력해 주세요</string>

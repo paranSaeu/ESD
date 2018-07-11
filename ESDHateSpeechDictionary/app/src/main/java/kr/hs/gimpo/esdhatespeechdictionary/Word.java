@@ -10,7 +10,7 @@ public class Word {
     // 한 단어가 포함하는 데이터를 명시합니다. 단어, 의미, 어원, 분류의 4가지입니다.
     public String _Word, _Meaning, _Etymology, _Category;
     
-    // Firebase DB에는 올리지 않는 검색용 임시 변수입니다. 검색어의 음절이 몇 개 포함되어 있는지 임시로 저장하게 됩니다. 오프라인에서만 사용하므로 접근 권한을 private으로 설정하여 Firebase DB가 사용하지 않도록 설정합니다.
+    // Firebase DB에는 올리지 않는 검색용 임시 변수입니다. 검색어의 음절이 몇 개 포함되어 있는지 임시로 저장하게 됩니다. 오프라인에서만 사용하므로 접근 권한을 private으로 설정하여 Firebase DB가 인식하지 않도록 설정합니다.
     private int isContain = 0;
     
     // 단어를 생성할 때 사용합니다. ESDWordRegister에서 사용되는 함수입니다.
@@ -46,8 +46,11 @@ public class Word {
     
     // 검색 중에 사용되는 함수입니다. 각 문자를 포함하는지 검색합니다.
     public void isContainChar(char a) {
-        if(this._Word.contains(String.valueOf(a))) {
-            isContain++;
+        // 공백 문자(' ')는 검색에 반영하지 않습니다.
+        if(a != ' ') {
+            if(this._Word.contains(String.valueOf(a))) {
+                isContain++;
+            }
         }
     }
     

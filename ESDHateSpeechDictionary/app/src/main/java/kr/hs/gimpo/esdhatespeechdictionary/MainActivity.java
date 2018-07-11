@@ -141,7 +141,7 @@ public class MainActivity extends AppCompatActivity
                     }
                 }
                 
-                // 배열을 위해 List형을 사용합니다.
+                // 검색 결과 정렬을 위해 List형을 사용합니다.
                 List<Word> list = new ArrayList<>();
                 
                 // HashMap 리스트에 있는 데이터를 ArrayList 리스트로 이동합니다.
@@ -149,7 +149,10 @@ public class MainActivity extends AppCompatActivity
                     list.add(wordList.get(i));
                 }
                 
-                // isContain 크기대로 내림차순 배열을 시행합니다.
+                // 먼저 사전순 정렬을 시행합니다. 이전 검색 결과에 구애받지 않는 결과 리스트가 작성됩니다.
+                Collections.sort(list, new CompareDict());
+                
+                // isContain 크기대로 내림차순 정렬을 시행합니다.
                 Collections.sort(list, new CompareSeqDesc());
                 
                 // 배열된 리스트를 원래 리스트에 적용합니다.
@@ -198,6 +201,8 @@ public class MainActivity extends AppCompatActivity
     }
     
     // 단어 목록을 오프라인에서 관리합니다.
+    // HashMap은 데이터 목록을 정해진 두 자료형에 따라 정리합니다.
+    // 여기서는 Index를 위한 Integer 형과 데이터 저장을 위한 Word 형이 설정되어 있습니다.
     Map<Integer, Word> wordList = new HashMap<>();
     
     // 단어 목록을 초기화합니다.
@@ -264,6 +269,14 @@ public class MainActivity extends AppCompatActivity
         @Override
         public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
             return new ViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.word, parent, false));
+        }
+    }
+    
+    // 모든 항목을 사전순(가, 나, 다, ...)으로 정렬해 주는 객체입니다.
+    static class CompareDict implements Comparator<Word> {
+        @Override
+        public int compare(Word o1, Word o2) {
+            return o1.get_Word().compareTo(o2.get_Word());
         }
     }
     
